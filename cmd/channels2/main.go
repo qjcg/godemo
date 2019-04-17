@@ -33,11 +33,6 @@ func main() {
 	// Iterate and launch each goroutine.
 	for i := 0; i < NRoutines; i++ {
 
-		if i == NRoutines {
-			close(nums)
-			continue
-		}
-
 		// Create an anonymous function for each goroutine that
 		// generates a random number and sends it on the channel.
 		go func() {

@@ -189,3 +189,4 @@ Exercise: https://play.golang.org/p/kdHgALCIPIs
 
 ## Channels
 - [Exercise 1](https://play.golang.org/p/gv9lxA3qhH-)
+- [Exercise 2](https://play.golang.org/p/9_b6YcBuSOR)

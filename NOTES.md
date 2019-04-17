@@ -83,6 +83,11 @@ Apr 15-18 2019
 
     Shrink Your Go Binaries With This One Weird Trick: https://blog.filippo.io/shrink-your-go-binaries-with-this-one-weird-trick/
 
+## Misc. Topics
+
+- [Python Unicode Howto](https://docs.python.org/3/howto/unicode.html) --- great
+  as a general guide to 
+
 
 -----------
 
@@ -181,3 +186,6 @@ Exercise: https://play.golang.org/p/kdHgALCIPIs
 
 - [Notes](https://github.com/qjcg/gtg/blob/master/topics/go/concurrency/goroutines/README.md)
 - [Exercise template](https://play.golang.org/p/O0FB2gd6-7d)
+
+## Channels
+- [Exercise 1](https://play.golang.org/p/gv9lxA3qhH-)

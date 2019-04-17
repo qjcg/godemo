@@ -1,5 +1,4 @@
-// The godemo package exports interesting functions for having a great Tuesday
-// afternoon.
+// The godemo package exports a toy "Greet" function that we use to demonstrate Unit Testing.
 package godemo
 
 import "fmt"

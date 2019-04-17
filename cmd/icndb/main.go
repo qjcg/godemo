@@ -1,4 +1,4 @@
-// CLI tool for retrieving random jokes from the ICNDB (http://www.icndb.com).
+// CLI client for the ICNDB JSON API (http://www.icndb.com/api).
 package main
 
 import (
@@ -15,7 +15,6 @@ const URLTemplate = "https://api.icndb.com/jokes/random/%d"
 
 // APIResp represents an API response from the ICNDB.
 type APIResp struct {
-	Type  string
 	Value []struct {
 		Joke string
 	}
@@ -45,7 +44,7 @@ func main() {
 	// Print the jokes from our API response.
 	// We also unescape any HTML character entity references.
 	// Ref: https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
-	for _, result := range ar.Value {
-		fmt.Println(html.UnescapeString(result.Joke))
+	for _, item := range ar.Value {
+		fmt.Println(html.UnescapeString(item.Joke))
 	}
 }

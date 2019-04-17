@@ -42,8 +42,6 @@ func main() {
 
 	// Create a variable to be used to track received messages.
 	// Set the value to the number of goroutines created.
-
-	// NOT NEEDED
 	msgsReceived := NRoutines
 
 	// Iterate receiving each value until they are all received.
@@ -53,6 +51,7 @@ func main() {
 		myInts = append(myInts, <-nums)
 		msgsReceived--
 	}
+	close(nums)
 
 	// Print the values in our slice.
 	fmt.Println(myInts)

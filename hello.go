@@ -5,6 +5,9 @@ package godemo
 import "fmt"
 
 // Greet function returns a friendly greeting.
-func Greet() {
-	fmt.Println("Howdy!")
+func Greet(name string) string {
+	if name == "" {
+		name = "Diego"
+	}
+	return fmt.Sprintf("Howdy %s!", name)
 }

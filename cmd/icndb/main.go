@@ -10,7 +10,8 @@ import (
 	"net/http"
 )
 
-const APIURLTmpl = "http://api.icndb.com/jokes/random/%d"
+// Ref: http://www.icndb.com/api/
+const URLTemplate = "http://api.icndb.com/jokes/random/%d"
 
 // APIResp represents an API response from the ICNDB.
 type APIResp struct {
@@ -24,7 +25,7 @@ func main() {
 	nJokes := flag.Int("n", 1, "number of random jokes to retreive")
 	flag.Parse()
 
-	url := fmt.Sprintf(APIURLTmpl, *nJokes)
+	url := fmt.Sprintf(URLTemplate, *nJokes)
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)

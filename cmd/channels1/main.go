@@ -15,7 +15,6 @@ func main() {
 
 	// Create an unbuffered channel.
 	numChan := make(chan int)
-	done := make(chan bool)
 
 	// Create the WaitGroup and add a count
 	// of two, one for each goroutine.
@@ -25,20 +24,20 @@ func main() {
 	// Launch the goroutine and handle Done.
 	go func() {
 		goroutine("R1", numChan)
-		done <- true
+		wg.Done()
 	}()
 
 	// Launch the goroutine and handle Done.
 	go func() {
 		goroutine("R2", numChan)
-		done <- true
+		wg.Done()
 	}()
 
 	// Send a value to start the counting.
 	numChan <- 0
 
 	// Wait for the program to finish.
-	<-done
+	wg.Wait()
 }
 
 // goroutine simulates sharing a value.
@@ -57,6 +56,7 @@ func goroutine(name string, c chan int) {
 
 		// Terminate when the value is 10.
 		if n == 10 {
+			close(c)
 			return
 		}
 

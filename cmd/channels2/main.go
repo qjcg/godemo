@@ -29,6 +29,7 @@ func main() {
 	// Create the buffered channel with room for
 	// each goroutine to be created.
 	nums := make(chan int, NRoutines)
+	defer close(nums)
 
 	// Iterate and launch each goroutine.
 	for i := 0; i < NRoutines; i++ {
@@ -51,7 +52,6 @@ func main() {
 		myInts = append(myInts, <-nums)
 		msgsReceived--
 	}
-	close(nums)
 
 	// Print the values in our slice.
 	fmt.Println(myInts)

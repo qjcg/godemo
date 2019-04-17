@@ -174,3 +174,10 @@ Exercise: https://play.golang.org/p/hfC2-yPI9y6
 Embedding
 Notes: https://github.com/qjcg/gtg/blob/master/topics/go/language/embedding/README.md
 Exercise: https://play.golang.org/p/kdHgALCIPIs
+
+----------
+
+# CONCURRENCY
+
+- [Notes](https://github.com/qjcg/gtg/blob/master/topics/go/concurrency/goroutines/README.md)
+- [Exercise template](https://play.golang.org/p/O0FB2gd6-7d)

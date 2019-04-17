@@ -1,4 +1,4 @@
-// Demo client for the ICNDB (icndb.com).
+// CLI tool for retrieving random jokes from the ICNDB (http://www.icndb.com).
 package main
 
 import (
@@ -11,7 +11,7 @@ import (
 )
 
 // Ref: http://www.icndb.com/api/
-const URLTemplate = "http://api.icndb.com/jokes/random/%d"
+const URLTemplate = "https://api.icndb.com/jokes/random/%d"
 
 // APIResp represents an API response from the ICNDB.
 type APIResp struct {
@@ -22,9 +22,12 @@ type APIResp struct {
 }
 
 func main() {
+
+	// Accept a CLI flag specifying the number of jokes to print.
 	nJokes := flag.Int("n", 1, "number of random jokes to retreive")
 	flag.Parse()
 
+	// Make an API request.
 	url := fmt.Sprintf(URLTemplate, *nJokes)
 	resp, err := http.Get(url)
 	if err != nil {
@@ -32,12 +35,16 @@ func main() {
 	}
 	defer resp.Body.Close()
 
+	// Decode the JSON API response into an APIResp struct.
 	var ar APIResp
-	dec := json.NewDecoder(resp.Body)
-	err = dec.Decode(&ar)
+	err = json.NewDecoder(resp.Body).Decode(&ar)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Print the jokes from our API response.
+	// We also unescape any HTML character entity references.
+	// Ref: https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
 	for _, result := range ar.Value {
 		fmt.Println(html.UnescapeString(result.Joke))
 	}

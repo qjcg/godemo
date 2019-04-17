@@ -29,6 +29,8 @@ Apr 15-18 2019
 
 # INTERESTING LINKS
 
+https://gopherize.me
+
 ## Go Community Practices
 
 - Go User Survey 2018 Results: https://blog.golang.org/survey2018-results
@@ -190,3 +192,20 @@ Exercise: https://play.golang.org/p/kdHgALCIPIs
 ## Channels
 - [Exercise 1](https://play.golang.org/p/gv9lxA3qhH-)
 - [Exercise 2](https://play.golang.org/p/9_b6YcBuSOR)
+
+# EXERCISE: Unit Testing
+
+Write and run ONE OF EACH of the following for either:
+
+    - code you've already written in class
+    - 3rd party code you find on the net
+    - something similar to what I have in hello.go
+
+1. Unit test
+2. Benchmark
+3. Example
+
+To run your tests, run:
+
+- `go test` (unit tests & examples, add `-v` for details)
+- `go test -bench .` (benchmarks)

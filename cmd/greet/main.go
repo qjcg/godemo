@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/qjcg/godemo"
+	"github.com/qjcg/godemo/pkg/hello"
 )
 
 func main() {
-	godemo.Greet()
+	hello.Greet("Jerry")
 }

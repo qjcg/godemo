@@ -1,5 +1,5 @@
 // The godemo package exports a toy "Greet" function that we use to demonstrate Unit Testing.
-package godemo
+package hello
 
 import "fmt"
 

@@ -3,34 +3,25 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"flag"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
-
-	"github.com/qjcg/kit"
 )
 
 func main() {
-	conf, err := kit.NewConfig("http2stream", "config")
-	if err != nil {
-		log.Fatal("[INFO] Error reading config file:", err)
-	}
+	cert := flag.String("c", "", "TLS Cert file")
+	key := flag.String("k", "", "TLS Key file")
+	flag.Parse()
 
-	debug := conf.GetBool("debug")
-	kit.NewLevelledLogger(debug)
-
-	log.Println("[DEBUG] THIS IS A DEBUG MESSAGE!")
-
-	cert := conf.GetString("cert")
-	key := conf.GetString("key")
-	if cert == "" || key == "" {
-		log.Fatal("[INFO] Invalid TLS cert and/or key provided!")
+	if *cert == "" || *key == "" {
+		log.Fatal("Invalid TLS cert and/or key provided!")
 	}
 
 	http.HandleFunc("/", Handler)
-	log.Println("[INFO] Listening on https://0.0.0.0:9999/")
-	log.Fatal(http.ListenAndServeTLS(":9999", cert, key, nil))
+	log.Println("Listening on https://0.0.0.0:9999/")
+	log.Fatal(http.ListenAndServeTLS(":9999", *cert, *key, nil))
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {

@@ -1,4 +1,4 @@
-// CLI client for the ICNDB JSON API (http://www.icndb.com/api).
+// Command-line client for the ICNDB JSON API (http://www.icndb.com/api).
 package main
 
 import (
@@ -6,8 +6,10 @@ import (
 	"flag"
 	"fmt"
 	"html"
+	"io"
 	"log"
 	"net/http"
+	"os"
 )
 
 // Ref: http://www.icndb.com/api/
@@ -34,17 +36,22 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	// Decode the JSON API response into an APIResp struct.
 	var ar APIResp
-	err = json.NewDecoder(resp.Body).Decode(&ar)
-	if err != nil {
-		log.Fatal(err)
-	}
+	decode(resp.Body, &ar)
+	print(os.Stdout, &ar)
+}
 
-	// Print the jokes from our API response.
-	// We also unescape any HTML character entity references.
-	// Ref: https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
-	for _, item := range ar.Value {
-		fmt.Println(html.UnescapeString(item.Joke))
+// Decode the JSON API response into an APIResp struct.
+func decode(r io.Reader, v *APIResp) error {
+	return json.NewDecoder(r).Decode(v)
+}
+
+// Print the jokes from our API response.
+// We also unescape any HTML character entity references.
+// Ref: https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
+func print(w io.Writer, v *APIResp) {
+	for _, item := range v.Value {
+		item.Joke = html.UnescapeString(item.Joke)
+		fmt.Fprintln(w, item.Joke)
 	}
 }

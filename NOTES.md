@@ -17,6 +17,7 @@ Apr 15-18 2019
 # Recommended Tools
 
 - linter: [golangci-lint](https://github.com/golangci/golangci-lint)
+- mkcert: https://github.com/FiloSottile/mkcert
 
 ----------
 
@@ -231,3 +232,33 @@ Compile and install your code (this will also install any 3rd party deps): "go i
 # STDLIB REVIEW
 
 - [io](https://golang.org/pkg/io/)
+
+
+# AGENDA FOR TODAY
+
+- Creating CLI Tools
+- Creating Web servers & clients
+- scrapers
+- gRPC & protobufs
+- Regex
+- Networking
+- Disadvantages of Go
+- Large projects / orgs using Go
+
+---------
+
+# CLI Tool Exercise
+
+- Take an application that you've already written in class (or adapt the example
+  code), and update it to accept at least 3 configuration parameters.
+
+- Use either the simple standard-lib based approach (using "flag"), or consider
+  viper for a more complex project (ex: with config file(s) & env vars)
+
+- Examples you can use for inspiration are:
+
+    - cmd/gtg-cli-simple
+    - cmd/gtg-cli-viper
+    - cmd/gtg-cli-cobra
+
+- Run your CLI tool and make sure that your config params are being used as expected

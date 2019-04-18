@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	// API demos.
+	// Subcommand: serve
 	cmdServe = &cobra.Command{
 		Use:   "serve",
 		Short: "Serve our web application",
@@ -22,12 +22,14 @@ var (
 	port int
 )
 
+// Add a flag for port, and add our subcommand to the root command.
 func init() {
 	cmdServe.PersistentFlags().IntVarP(&port, "port", "p", 8080, "port to listen on")
 
 	rootCmd.AddCommand(cmdServe)
 }
 
+// Serve will start a server listening on the provided port.
 func Serve(port int) {
 	fmt.Printf("Listening on port: %d\n", port)
 }
